@@ -1,0 +1,13 @@
+#!/sbin/openrc-run
+
+name=$RC_SVCNAME
+description="kairos system initramfs setup before switch root"
+command="/usr/bin/elemental"
+command_args="run-stage initramfs"
+start_stop_daemon_args=" -r /sysroot"
+
+depend() {
+	after initrd-fs 
+	before initrd 
+	need initrd-fs 
+}
